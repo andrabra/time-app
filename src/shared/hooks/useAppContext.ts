@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppContext } from '../contexts/TimeContext/AppContextInstance';
+import { AppContext } from '../../contexts/TimeContext/AppContextInstance';
 
 export const useAppContext = () => {
   const context = React.useContext(AppContext);

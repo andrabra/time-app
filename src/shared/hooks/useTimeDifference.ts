@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import type { ITimeDifference } from '../types/types';
+import type { ITimeDifference } from '../../types/types';
 
 export const calculateTimeDifference = (
   start: Date,

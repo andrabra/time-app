@@ -1,13 +1,16 @@
 import { Flex, Form, Switch, Typography } from 'antd';
-import { useAppContext } from '../../hooks/useAppContext';
+import { useAppContext } from '../../shared/hooks/useAppContext';
 import { useState } from 'react';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { formatTimeDifference } from '../../shared/lib/time';
 
 const TimeDisplay = () => {
   const { timeDifference } = useAppContext();
   const [relative, setRelative] = useState(false);
 
-  if (!timeDifference) {
+  const formattedTimeDifference = formatTimeDifference(timeDifference);
+
+  if (!timeDifference || !formattedTimeDifference) {
     return (
       <Flex vertical align='center'>
         <Typography.Title level={2}>Time Difference</Typography.Title>
@@ -35,36 +38,68 @@ const TimeDisplay = () => {
     <Flex vertical className='time-display-wrapper'>
       <Typography.Title level={2}>Time Difference</Typography.Title>
       <Typography.Paragraph>
-        {relative
-          ? formatRtf(Number(timeDifference.days.toFixed(2)), 'day')
-          : `Дни: ${timeDifference.days.toFixed(2)}`}
+        {relative ? (
+          formatRtf(Number(formattedTimeDifference?.days), 'day')
+        ) : (
+          <>
+            Дни:{' '}
+            <Typography.Text strong>
+              {formattedTimeDifference?.days}
+            </Typography.Text>
+          </>
+        )}
       </Typography.Paragraph>
       <Typography.Paragraph>
-        {relative
-          ? formatRtf(Number(timeDifference.hours.toFixed(2)), 'hour')
-          : `Часы: ${timeDifference.hours.toFixed(2)}`}
+        {relative ? (
+          formatRtf(Number(formattedTimeDifference?.hours), 'hour')
+        ) : (
+          <>
+            Часы:{' '}
+            <Typography.Text strong>
+              {formattedTimeDifference?.hours}
+            </Typography.Text>
+          </>
+        )}
       </Typography.Paragraph>
       <Typography.Paragraph>
-        {relative
-          ? formatRtf(Number(timeDifference.minutes.toFixed(2)), 'minute')
-          : `Минуты: ${timeDifference.minutes.toFixed(2)}`}
+        {relative ? (
+          formatRtf(Number(formattedTimeDifference?.minutes), 'minute')
+        ) : (
+          <>
+            Минуты:{' '}
+            <Typography.Text strong>
+              {formattedTimeDifference?.minutes}
+            </Typography.Text>
+          </>
+        )}
       </Typography.Paragraph>
       <Typography.Paragraph>
-        {relative
-          ? formatRtf(Number(timeDifference.seconds.toFixed(2)), 'second')
-          : `Секунды: ${timeDifference.seconds.toFixed(2)}`}
+        {relative ? (
+          formatRtf(Number(formattedTimeDifference?.seconds), 'second')
+        ) : (
+          <>
+            Секунды:{' '}
+            <Typography.Text strong>
+              {formattedTimeDifference?.seconds}
+            </Typography.Text>
+          </>
+        )}
       </Typography.Paragraph>
       <Typography.Paragraph>
-        Total Milliseconds: {timeDifference.totalMilliseconds.toFixed(2)}
+        <Typography.Text code>
+          Total Milliseconds: {formattedTimeDifference?.totalMilliseconds}
+        </Typography.Text>
       </Typography.Paragraph>
-      <Form.Item name='relative' label='Относительная'>
-        <Switch
-          id='relative'
-          checkedChildren={<CheckOutlined />}
-          unCheckedChildren={<CloseOutlined />}
-          onChange={handleSwitch}
-        />
-      </Form.Item>
+      <Form>
+        <Form.Item name='relative' label='Относительная'>
+          <Switch
+            id='relative'
+            checkedChildren={<CheckOutlined />}
+            unCheckedChildren={<CloseOutlined />}
+            onChange={handleSwitch}
+          />
+        </Form.Item>
+      </Form>
     </Flex>
   );
 };

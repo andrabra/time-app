@@ -7,9 +7,9 @@ import {
   type CheckboxProps,
 } from 'antd';
 import dayjs from 'dayjs';
-import { calculateTimeDifference } from '../../hooks/useTimeDifference';
+import { calculateTimeDifference } from '../../shared/hooks/useTimeDifference';
 import type { valuesType } from '../../types/types';
-import { useAppContext } from '../../hooks/useAppContext';
+import { useAppContext } from '../../shared/hooks/useAppContext';
 import { useEffect, useRef, useState } from 'react';
 
 const DateRangePicker = () => {
