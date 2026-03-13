@@ -83,7 +83,7 @@ const DateRangePicker = () => {
         <Form.Item
           label='Стартовая дата'
           name='startDate'
-          rules={[{ required: true, message: 'Пожалуйста, введите дату!' }]}
+          rules={[{ required: true, message: 'Пожалуйста, введите дату!123' }]}
         >
           <DatePicker
             disabled={useCurrentDate}
