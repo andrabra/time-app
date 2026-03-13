@@ -31,7 +31,7 @@ const TimeDisplay = () => {
   };
 
   return (
-    <Flex vertical align='center'>
+    <Flex vertical className='time-display-wrapper'>
       <Typography.Title level={2}>Time Difference</Typography.Title>
       <Typography.Paragraph>
         {relative

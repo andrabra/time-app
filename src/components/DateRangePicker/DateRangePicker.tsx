@@ -16,6 +16,8 @@ const DateRangePicker = () => {
   const { setTimeDifference } = useAppContext();
   const [useCurrentDate, setUseCurrentDate] = useState(false);
   const [form] = Form.useForm();
+  const startDate = Form.useWatch('startDate', form);
+  const endDate = Form.useWatch('endDate', form);
   const intervalIdRef = useRef<number | null>(null);
 
   const onFinish = (values: valuesType) => {
@@ -72,7 +74,7 @@ const DateRangePicker = () => {
       name='date-range-picker'
       labelCol={{ xs: { span: 24 }, sm: { span: 8 } }}
       wrapperCol={{ xs: { span: 24 }, sm: { span: 16 } }}
-      style={{ maxWidth: 600, width: '100%' }}
+      style={{ maxWidth: 600, width: '100%', marginTop: 16 }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete='off'
@@ -108,7 +110,11 @@ const DateRangePicker = () => {
         <Form.Item
           wrapperCol={{ xs: { span: 24 }, sm: { offset: 8, span: 16 } }}
         >
-          <Button type='primary' htmlType='submit'>
+          <Button
+            type='primary'
+            htmlType='submit'
+            disabled={!startDate || !endDate}
+          >
             Submit
           </Button>
         </Form.Item>

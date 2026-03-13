@@ -45,8 +45,8 @@ function App() {
       </Header>
       <Content style={contentStyle} className='app-content'>
         <Flex gap={'middle'} className='app-main'>
-          <DateRangePicker />
           <TimeDisplay />
+          <DateRangePicker />
         </Flex>
       </Content>
       <Footer style={footerStyle}>{dayjs().format('YYYY-MM-DD')}</Footer>

@@ -13,6 +13,13 @@
   width: 100%;
 }
 
+.time-display-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
 @media (max-width: 768px) {
   .app-main {
     flex-direction: column;
@@ -22,5 +29,9 @@
   .app-layout {
     height: auto;
     min-height: 100vh;
+  }
+
+  .time-display-wrapper {
+    align-items: center;
   }
 }
