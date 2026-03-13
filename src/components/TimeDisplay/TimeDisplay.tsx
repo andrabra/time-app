@@ -1,4 +1,4 @@
-import { Flex, Switch, Typography } from 'antd';
+import { Flex, Form, Switch, Typography } from 'antd';
 import { useAppContext } from '../../hooks/useAppContext';
 import { useState } from 'react';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
@@ -36,37 +36,34 @@ const TimeDisplay = () => {
       <Typography.Paragraph>
         {relative
           ? formatRtf(Number(timeDifference.days.toFixed(2)), 'day')
-          : `Days: ${timeDifference.days.toFixed(2)}`}
+          : `Дни: ${timeDifference.days.toFixed(2)}`}
       </Typography.Paragraph>
       <Typography.Paragraph>
         {relative
           ? formatRtf(Number(timeDifference.hours.toFixed(2)), 'hour')
-          : `Hours: ${timeDifference.hours.toFixed(2)}`}
+          : `Часы: ${timeDifference.hours.toFixed(2)}`}
       </Typography.Paragraph>
       <Typography.Paragraph>
         {relative
           ? formatRtf(Number(timeDifference.minutes.toFixed(2)), 'minute')
-          : `Minutes: ${timeDifference.minutes.toFixed(2)}`}
+          : `Минуты: ${timeDifference.minutes.toFixed(2)}`}
       </Typography.Paragraph>
       <Typography.Paragraph>
         {relative
           ? formatRtf(Number(timeDifference.seconds.toFixed(2)), 'second')
-          : `Seconds: ${timeDifference.seconds.toFixed(2)}`}
+          : `Секунды: ${timeDifference.seconds.toFixed(2)}`}
       </Typography.Paragraph>
       <Typography.Paragraph>
         Total Milliseconds: {timeDifference.totalMilliseconds.toFixed(2)}
       </Typography.Paragraph>
-
-      <Flex gap={'small'}>
+      <Form.Item name='relative' label='Относительная'>
         <Switch
+          id='relative'
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
           onChange={handleSwitch}
         />
-        <Typography.Paragraph>
-          Относительная: {relative ? 'Да' : 'Нет'}
-        </Typography.Paragraph>
-      </Flex>
+      </Form.Item>
     </Flex>
   );
 };

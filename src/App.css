@@ -23,7 +23,7 @@
 @media (max-width: 768px) {
   .app-main {
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
   }
 
   .app-layout {
@@ -32,6 +32,6 @@
   }
 
   .time-display-wrapper {
-    align-items: center;
+    /* align-items: center; */
   }
 }
