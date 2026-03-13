@@ -12,7 +12,8 @@ const TimeDisplay = () => {
       <Flex vertical align='center'>
         <Typography.Title level={2}>Time Difference</Typography.Title>
         <Typography.Paragraph>
-          Выберите даты и нажмите на кнопку 'Рассчитать'
+          Выберите даты и нажмите на кнопку{' '}
+          <Typography.Text strong>Рассчитать</Typography.Text>
         </Typography.Paragraph>
       </Flex>
     );
