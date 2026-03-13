@@ -31,7 +31,7 @@ const DateRangePicker = () => {
   };
 
   const onFinishFailed = (errorInfo: unknown) => {
-    // console.log('Failed:', errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   const onChange: CheckboxProps['onChange'] = (e) => {
