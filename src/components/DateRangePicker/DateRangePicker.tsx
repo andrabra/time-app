@@ -81,9 +81,9 @@ const DateRangePicker = () => {
     >
       <Flex vertical>
         <Form.Item
-          label='Start Date'
+          label='Стартовая дата'
           name='startDate'
-          rules={[{ required: true, message: 'Please input date!' }]}
+          rules={[{ required: true, message: 'Пожалуйста, введите дату!' }]}
         >
           <DatePicker
             disabled={useCurrentDate}
@@ -101,9 +101,9 @@ const DateRangePicker = () => {
           </Checkbox>
         </Form.Item>
         <Form.Item
-          label='End Date'
+          label='Конечная дата'
           name='endDate'
-          rules={[{ required: true, message: 'Please input date!' }]}
+          rules={[{ required: true, message: 'Пожалуйста, введите дату!' }]}
         >
           <DatePicker showTime style={{ width: '100%' }} />
         </Form.Item>
@@ -115,7 +115,7 @@ const DateRangePicker = () => {
             htmlType='submit'
             disabled={!startDate || !endDate}
           >
-            Submit
+            Рассчитать
           </Button>
         </Form.Item>
       </Flex>

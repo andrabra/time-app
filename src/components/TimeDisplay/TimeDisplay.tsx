@@ -12,7 +12,7 @@ const TimeDisplay = () => {
       <Flex vertical align='center'>
         <Typography.Title level={2}>Time Difference</Typography.Title>
         <Typography.Paragraph>
-          Select dates and click Submit
+          Выберите даты и нажмите на кнопку 'Рассчитать'
         </Typography.Paragraph>
       </Flex>
     );
@@ -64,7 +64,7 @@ const TimeDisplay = () => {
           onChange={handleSwitch}
         />
         <Typography.Paragraph>
-          Relative: {relative ? 'Yes' : 'No'}
+          Относительная: {relative ? 'Да' : 'Нет'}
         </Typography.Paragraph>
       </Flex>
     </Flex>
