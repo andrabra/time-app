@@ -13,21 +13,37 @@ import { useAppContext } from '../../shared/hooks/useAppContext';
 import { useEffect, useRef, useState } from 'react';
 
 const DateRangePicker = () => {
-  const { setTimeDifference } = useAppContext();
+  const { setTimeDifference, setFinished, finished } = useAppContext();
   const [useCurrentDate, setUseCurrentDate] = useState(false);
+
   const [form] = Form.useForm();
+
   const startDate = Form.useWatch('startDate', form);
   const endDate = Form.useWatch('endDate', form);
+
   const intervalIdRef = useRef<number | null>(null);
+  const intervalIdNowRef = useRef<number | null>(null);
+
+  const updateTimeDifference = (
+    startDate: Date | dayjs.Dayjs,
+    endDate: Date | dayjs.Dayjs,
+  ) => {
+    const { days, hours, minutes, seconds, totalMilliseconds } =
+      calculateTimeDifference(startDate, endDate);
+
+    setTimeDifference({ days, hours, minutes, seconds, totalMilliseconds });
+  };
 
   const onFinish = (values: valuesType) => {
     const startDate = values.startDate || dayjs();
     const endDate = values.endDate || dayjs();
 
-    const { days, hours, minutes, seconds, totalMilliseconds } =
-      calculateTimeDifference(startDate, endDate);
+    updateTimeDifference(startDate, endDate);
+    setFinished(true);
 
-    setTimeDifference({ days, hours, minutes, seconds, totalMilliseconds });
+    if (useCurrentDate) {
+      updateTimeDifference(dayjs(), endDate);
+    }
   };
 
   const onFinishFailed = (errorInfo: unknown) => {
@@ -52,8 +68,17 @@ const DateRangePicker = () => {
         clearInterval(intervalIdRef.current);
       }
 
+      if (intervalIdNowRef.current !== null) {
+        clearInterval(intervalIdNowRef.current);
+      }
+
       intervalIdRef.current = window.setInterval(() => {
         form.setFieldValue('startDate', dayjs());
+        const startDate = form.getFieldValue('startDate');
+
+        if (finished && startDate && endDate) {
+          updateTimeDifference(startDate, endDate);
+        }
       }, 1000);
     } else if (intervalIdRef.current !== null) {
       clearInterval(intervalIdRef.current);
@@ -66,7 +91,7 @@ const DateRangePicker = () => {
         intervalIdRef.current = null;
       }
     };
-  }, [useCurrentDate, form]);
+  }, [useCurrentDate, form, finished]);
 
   return (
     <Form
@@ -88,7 +113,7 @@ const DateRangePicker = () => {
           <DatePicker
             disabled={useCurrentDate}
             showTime
-            style={{ width: '100%' }}
+            style={{ width: '100%', maxWidth: 180 }}
           />
         </Form.Item>
         <Form.Item
@@ -105,7 +130,7 @@ const DateRangePicker = () => {
           name='endDate'
           rules={[{ required: true, message: 'Пожалуйста, введите дату!' }]}
         >
-          <DatePicker showTime style={{ width: '100%' }} />
+          <DatePicker showTime style={{ width: '100%', maxWidth: 180 }} />
         </Form.Item>
         <Form.Item
           wrapperCol={{ xs: { span: 24 }, sm: { offset: 8, span: 16 } }}

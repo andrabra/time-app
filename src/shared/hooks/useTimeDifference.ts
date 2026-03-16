@@ -2,8 +2,8 @@ import dayjs from 'dayjs';
 import type { ITimeDifference } from '../../types/types';
 
 export const calculateTimeDifference = (
-  start: Date,
-  target: Date,
+  start: Date | dayjs.Dayjs,
+  target: Date | dayjs.Dayjs,
 ): ITimeDifference => {
   const difference = dayjs(target).diff(dayjs(start));
 
