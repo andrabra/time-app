@@ -75,6 +75,7 @@ const DateRangePicker = () => {
       intervalIdRef.current = window.setInterval(() => {
         form.setFieldValue('startDate', dayjs());
         const startDate = form.getFieldValue('startDate');
+        const endDate = form.getFieldValue('endDate');
 
         if (finished && startDate && endDate) {
           updateTimeDifference(startDate, endDate);
@@ -95,17 +96,19 @@ const DateRangePicker = () => {
 
   return (
     <Form
+      layout='vertical'
       form={form}
       name='date-range-picker'
       labelCol={{ xs: { span: 24 }, sm: { span: 8 } }}
       wrapperCol={{ xs: { span: 24 }, sm: { span: 16 } }}
-      style={{ maxWidth: 600, width: '100%', marginTop: 16 }}
+      style={{ maxWidth: 600, width: '100%' }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete='off'
     >
-      <Flex vertical>
+      <Flex vertical gap={'medium'} className='time-picker-wrapper'>
         <Form.Item
+          className='form-item'
           label='Стартовая дата'
           name='startDate'
           rules={[{ required: true, message: 'Пожалуйста, введите дату!' }]}
@@ -117,15 +120,17 @@ const DateRangePicker = () => {
           />
         </Form.Item>
         <Form.Item
+          className='form-item'
           name='useCurrentDate'
           valuePropName='checked'
-          wrapperCol={{ xs: { span: 24 }, sm: { offset: 8, span: 16 } }}
+          wrapperCol={{ xs: { span: 24 }, sm: { span: 16 } }}
         >
           <Checkbox onChange={onChange} checked={useCurrentDate}>
             От текущей даты
           </Checkbox>
         </Form.Item>
         <Form.Item
+          className='form-item'
           label='Конечная дата'
           name='endDate'
           rules={[{ required: true, message: 'Пожалуйста, введите дату!' }]}
@@ -133,7 +138,8 @@ const DateRangePicker = () => {
           <DatePicker showTime style={{ width: '100%', maxWidth: 180 }} />
         </Form.Item>
         <Form.Item
-          wrapperCol={{ xs: { span: 24 }, sm: { offset: 8, span: 16 } }}
+          className='form-item'
+          wrapperCol={{ xs: { span: 24 }, sm: { span: 16 } }}
         >
           <Button
             type='primary'

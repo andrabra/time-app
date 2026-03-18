@@ -13,7 +13,6 @@ const TimeDisplay = () => {
   if (!timeDifference || !formattedTimeDifference) {
     return (
       <Flex vertical align='center'>
-        <Typography.Title level={2}>Time Difference</Typography.Title>
         <Typography.Paragraph>
           Выберите даты и нажмите на кнопку{' '}
           <Typography.Text strong>Рассчитать</Typography.Text>
@@ -90,8 +89,8 @@ const TimeDisplay = () => {
           Total Milliseconds: {formattedTimeDifference?.totalMilliseconds}
         </Typography.Text>
       </Typography.Paragraph>
-      <Form>
-        <Form.Item name='relative' label='Относительная'>
+      <Form layout={'inline'}>
+        <Form.Item className='form-item' name='relative' label='Относительная'>
           <Switch
             id='relative'
             checkedChildren={<CheckOutlined />}

@@ -7,6 +7,7 @@
   gap: 24px;
   width: 100%;
   max-width: 960px;
+  height: 100%;
 }
 
 .app-main > * {
@@ -20,6 +21,10 @@
   gap: 4px;
 }
 
+.form-item {
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .app-main {
     flex-direction: column;
@@ -31,7 +36,11 @@
     min-height: 100vh;
   }
 
-  .time-display-wrapper {
-    /* align-items: center; */
-  }
+  /* .time-picker-wrapper {
+    align-items: center;
+  } */
+
+  /* .time-display-wrapper {
+    align-items: center;
+  } */
 }

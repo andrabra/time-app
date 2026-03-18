@@ -2,9 +2,8 @@ import 'antd/dist/reset.css';
 import './App.css';
 import TimeDisplay from './components/TimeDisplay/TimeDisplay';
 import DateRangePicker from './components/DateRangePicker/DateRangePicker';
-import { Flex, Layout } from 'antd';
+import { Flex, Layout, Card, Typography } from 'antd';
 import dayjs from 'dayjs';
-
 const { Header, Footer, Content } = Layout;
 
 const headerStyle: React.CSSProperties = {
@@ -44,9 +43,20 @@ function App() {
         <h1>Time Diff</h1>
       </Header>
       <Content style={contentStyle} className='app-content'>
-        <Flex gap={'middle'} className='app-main'>
-          <TimeDisplay />
-          <DateRangePicker />
+        <Flex className='app-main'>
+          <Card
+            title={
+              <Typography.Title style={{ marginBottom: 0 }} level={2}>
+                Time Difference
+              </Typography.Title>
+            }
+            variant={'outlined'}
+          >
+            <TimeDisplay />
+          </Card>
+          <Card variant={'outlined'}>
+            <DateRangePicker />
+          </Card>
         </Flex>
       </Content>
       <Footer style={footerStyle}>{dayjs().format('YYYY-MM-DD')}</Footer>
