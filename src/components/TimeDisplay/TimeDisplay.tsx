@@ -35,7 +35,6 @@ const TimeDisplay = () => {
 
   return (
     <Flex vertical className='time-display-wrapper'>
-      <Typography.Title level={2}>Time Difference</Typography.Title>
       <Typography.Paragraph>
         {relative ? (
           formatRtf(Number(formattedTimeDifference?.days), 'day')
